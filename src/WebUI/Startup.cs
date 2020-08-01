@@ -62,6 +62,17 @@ namespace DesignPatterns.Api.WebUI
 
                 configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default",
+                builder => builder
+                    .WithOrigins("https://localhost:5003")
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,7 +100,7 @@ namespace DesignPatterns.Api.WebUI
             });
 
             app.UseRouting();
-
+            app.UseCors("default");
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
