@@ -30,9 +30,6 @@ namespace DesignPatterns.Api.WebUI
                         context.Database.Migrate();
                     }                   
 
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-
-                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager);
                     await ApplicationDbContextSeed.SeedSampleDataAsync(context);
                 }
                 catch (Exception ex)

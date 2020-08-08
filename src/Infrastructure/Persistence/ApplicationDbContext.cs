@@ -1,12 +1,8 @@
 ﻿using DesignPatterns.Api.Application.Common.Interfaces;
 using DesignPatterns.Api.Domain.Common;
 using DesignPatterns.Api.Domain.Entities;
-using DesignPatterns.Api.Infrastructure.Identity;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Options;
 using System.Data;
 using System.Reflection;
 using System.Threading;
@@ -14,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.Api.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
@@ -22,9 +18,8 @@ namespace DesignPatterns.Api.Infrastructure.Persistence
 
         public ApplicationDbContext(
             DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions,
             ICurrentUserService currentUserService,
-            IDateTime dateTime) : base(options, operationalStoreOptions)
+            IDateTime dateTime) : base(options)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;

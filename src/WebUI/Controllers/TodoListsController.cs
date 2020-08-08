@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.Api.WebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "ApiScope")]
     public class TodoListsController : ApiController
     {
         [HttpGet]
