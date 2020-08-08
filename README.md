@@ -1,5 +1,5 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+DesignPatterns.API es una API protegida por Identity Server.
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
@@ -18,3 +18,19 @@ If you want to learn more about creating good readme files then refer the follow
 - [ASP.NET Core](https://github.com/aspnet/Home)
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
+
+# Ejemplo para solicitar info a Identity Server
+```csharp
+var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+var client1 = new HttpClient();
+
+var disco = await client1.GetDiscoveryDocumentAsync("http://localhost:5002");
+var client2 = new HttpClient();
+
+var response = await client2.GetUserInfoAsync(new UserInfoRequest
+{
+    Address = disco.UserInfoEndpoint,
+    Token = accessToken
+});
+```

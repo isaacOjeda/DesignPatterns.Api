@@ -2,8 +2,11 @@
 using DesignPatterns.Api.Application.TodoItems.Commands.DeleteTodoItem;
 using DesignPatterns.Api.Application.TodoItems.Commands.UpdateTodoItem;
 using DesignPatterns.Api.Application.TodoItems.Commands.UpdateTodoItemDetail;
+using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace DesignPatterns.Api.WebUI.Controllers
@@ -46,6 +49,8 @@ namespace DesignPatterns.Api.WebUI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
+    
+
             await Mediator.Send(new DeleteTodoItemCommand { Id = id });
 
             return NoContent();

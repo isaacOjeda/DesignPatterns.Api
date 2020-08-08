@@ -42,6 +42,7 @@ namespace DesignPatterns.Api.Infrastructure
                     {
                         ValidateAudience = false
                     };
+
                 });
             services.AddAuthorization(options =>
             {
