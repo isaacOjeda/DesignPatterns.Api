@@ -3,7 +3,8 @@
     public interface ICurrentUserService
     {
         string UserId { get; }
-        string UserName { get; }
+        string Name { get; }
+        string Email { get; }
         bool IsInRole(string role);
     }
 }

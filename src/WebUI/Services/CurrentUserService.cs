@@ -9,13 +9,16 @@ namespace DesignPatterns.Api.WebUI.Services
         private readonly HttpContext _http;
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-            UserName = "TBD";
             _http = httpContextAccessor.HttpContext;
+
+            UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            Name = httpContextAccessor.HttpContext?.User?.FindFirstValue("name");
+            Email = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
         }
 
         public string UserId { get; }
-        public string UserName { get; }
+        public string Name { get; }
+        public string Email { get; set; }
 
         public bool IsInRole(string role) => _http.User.IsInRole(role);
     }

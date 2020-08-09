@@ -21,7 +21,7 @@ namespace DesignPatterns.Api.Application.Common.Behaviours
         {
             var requestName = typeof(TRequest).Name;
             var userId = _currentUserService.UserId ?? string.Empty;
-            var userName = _currentUserService.UserName ?? string.Empty;
+            var userName = _currentUserService.Name ?? string.Empty;
 
             _logger.LogInformation("DesignPatterns.Api Request: {Name} {@UserId} {@UserName} {@Request}",
                 requestName, userId, userName, request);
