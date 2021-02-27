@@ -7,7 +7,7 @@
     "DesignPatterns.Api.WebUI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5003;http://localhost:5004",
+      "applicationUrl": "https://localhost:50003;http://localhost:50002",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
