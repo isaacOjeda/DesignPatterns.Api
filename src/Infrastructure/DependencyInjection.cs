@@ -1,4 +1,5 @@
-﻿using DesignPatterns.Api.Application.Common.Interfaces;
+﻿using System.Net.Http;
+using DesignPatterns.Api.Application.Common.Interfaces;
 using DesignPatterns.Api.Infrastructure.Files;
 using DesignPatterns.Api.Infrastructure.Identity;
 using DesignPatterns.Api.Infrastructure.Persistence;
@@ -38,11 +39,13 @@ namespace DesignPatterns.Api.Infrastructure
                 {
                     options.RequireHttpsMetadata = false; // Para Testing nada mas
                     options.Authority = configuration["Services:Identity"];
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
+                    options.Audience = "designpatterns";
 
+                    // Just Testing
+                    options.BackchannelHttpHandler = new HttpClientHandler
+                    {
+                        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                    };
                 });
             services.AddAuthorization(options =>
             {

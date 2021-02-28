@@ -67,7 +67,7 @@ namespace DesignPatterns.Api.WebUI
             {
                 options.AddPolicy("default",
                 builder => builder
-                    .WithOrigins("https://localhost:5003")
+                    .WithOrigins("https://localhost:50005")
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
