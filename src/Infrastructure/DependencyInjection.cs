@@ -33,6 +33,7 @@ namespace DesignPatterns.Api.Infrastructure
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
